@@ -6,6 +6,7 @@
 #include <fstream>
 #include <string>
 
+#include "airline.h"
 #include "flight.h"
 
 using namespace std;
@@ -26,14 +27,14 @@ int main(void) {
   ifstream input;
 
   // Flight data.
-  vector<Flight> flights;
+  Airline west_jet("WestJet");
   input.open("flights.txt");
   {
     string id, src, dest;
     int num_rows, num_seats_per_row;
     while(input.peek() != EOF) {
       input >> id >> src >> dest >> num_rows >> num_seats_per_row;
-      flights.push_back(Flight(id, num_rows, num_seats_per_row, src, dest));
+      west_jet.addFlight(id, num_rows, num_seats_per_row, src, dest);
     }
   } 
   input.close();
@@ -55,9 +56,9 @@ int main(void) {
       
       input >> seat_char >> id;
 
-      for(int i = 0; i < flights.size(); i++) {
-        if(flights.at(i).get_id() == flight_id) {
-          flights.at(i).addPassenger(id, fname, lname, phone, row_num, seat_char);
+      for(int i = 0; i < west_jet.get_flights()->size(); i++) {
+        if(west_jet.get_flights()->at(i).get_id() == flight_id) {
+          west_jet.get_flights()->at(i).addPassenger(id, fname, lname, phone, row_num, seat_char);
         }
       }
     }
@@ -87,12 +88,13 @@ int main(void) {
         // List flights.
         cout << "Here is the list of available flights. Please select one:" << endl;
         int i;
-        for(i = 0; i < flights.size(); i++) {
-          cout << "\t" << i + 1 << ". " << flights.at(i).get_id() << setw(8) 
-                                        << flights.at(i).get_route().get_source() << setw(10) 
-                                        << flights.at(i).get_route().get_destination() << setw(10)
-                                        << flights.at(i).get_number_of_rows() << setw(6)
-                                        << flights.at(i).get_number_of_seats_per_row() << endl;
+        for(i = 0; i < west_jet.get_flights()->size(); i++) {
+          Flight *flight = &west_jet.get_flights()->at(i);
+          cout << "\t" << i + 1 << ". " << flight->get_id() << setw(8) 
+                                        << flight->get_route().get_source() << setw(10) 
+                                        << flight->get_route().get_destination() << setw(10)
+                                        << flight->get_number_of_rows() << setw(6)
+                                        << flight->get_number_of_seats_per_row() << endl;
         }
         cout << "Enter your choice: ";
         selected_flight = get_choice(1, i);
@@ -105,7 +107,7 @@ int main(void) {
           break;
         }
 
-        flights.at(selected_flight - 1).print_seat_map();
+        west_jet.get_flights()->at(selected_flight - 1).print_seat_map();
         break;
 
       // Case for displaying a passenger's information.
