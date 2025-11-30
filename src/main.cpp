@@ -76,6 +76,7 @@ int main(void) {
          << "\t5. Remove an existing passenger" << endl
          << "\t6. Save data" << endl
          << "\t7. Quit" << endl;
+    cout << "Enter your choice (1, 2, 3, 4, 5, 6, or 7): ";
     int choice = get_choice(1, 7);
 
     switch(choice) {
