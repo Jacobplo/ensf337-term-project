@@ -3,10 +3,13 @@
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
+#include <string>
 
 #include "flight.h"
 
 using namespace std;
+
+int get_choice(int min, int max);
 
 int main(void) {
   // Title.
@@ -14,7 +17,7 @@ int main(void) {
        << "Term Project - Flight Management Application System" << endl
        << "Produced by group#: 12" << endl
        << "Names: Jacob Plourde, Julio Izuogo, Unas Khalid" << endl << endl
-       << "<<< Press Return to Continue >>>";
+       << "<<< Press Return to Continue >>>" << endl;
   cin.get();
 
 
@@ -59,11 +62,49 @@ int main(void) {
     }
   }
   input.close();
-  
+
+
+
+  // Main loop.
+  while(1) {
+    // Main menu.
+    cout << "Please select one of the following options:" << endl
+         << "\t1. Select a flight" << endl
+         << "\t2. Display flight seat map" << endl
+         << "\t3. Display passengers information" << endl
+         << "\t4. Add a new passenger" << endl
+         << "\t5. Remove an existing passenger" << endl
+         << "\t6. Save data" << endl
+         << "\t7. Quit" << endl;
+    int choice = get_choice(1, 7);
+  }  
   
 
 
 
 
   return 0;
+}
+
+
+
+int get_choice(int min, int max) {
+  while(1) {
+    string input;
+    getline(cin, input);
+
+    char *endptr;
+    int choice = strtol(input.c_str(), &endptr, 10);
+    if(*endptr) {
+      cout << "Invalid input: Must enter a valid integer. Try again: ";
+      continue;
+    }
+
+    if(choice < min || choice > max) {
+      cout << "Invalid input: Must be between " << min << " and " << max << ". Try again: ";
+      continue;
+    }
+
+    return choice;
+  }
 }
