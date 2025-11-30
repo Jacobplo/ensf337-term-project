@@ -43,11 +43,11 @@ void Flight::removePassenger(int id) {
 void Flight::print_seat_map() {
   cout << "Aircraft Seat Map for Flight " << id << endl;
   // Seat char row.
-  cout << "     ";
+  cout << setw(2) << ' ';
   for(size_t i = 0; i < seats.at(0).size(); i++) {
-    cout << i + 'A' << setw(4);
+    cout << setw(4) << static_cast<char>(i + 'A');
   }
-  cout << "\n  +";
+  cout << endl << setw(4) << "+";
   for(size_t i = 0; i < seats.at(0).size(); i++) {
     cout << "---+";
   }
@@ -55,16 +55,18 @@ void Flight::print_seat_map() {
 
   // Fill table.
   for(size_t row = 0; row < seats.size() * 2; row++) {
+    // Intial column, alternating row num and table boundary.
     if(row % 2 == 0) {
-      cout << row / 2 << " |";
+      cout << setw(3) << row / 2 + 1 << "|";
     }
     else {
-      cout << "  +";
+      cout << setw(4) << "+";
     }
 
     for(size_t col = 0; col < seats.at(row / 2).size(); col++) {
+      // Each seat in a row, alternating row num and table boundary.
       if(row % 2 == 0) {
-        cout << ' ' << (seats.at(row / 2).at(col).get_occupied() ? 'X' : ' ') << " |";  
+        cout << setw(2) << (seats.at(row / 2).at(col).get_occupied() ? 'X' : ' ') << setw(2) << "|";  
       }
       else {
         cout << "---+"; 

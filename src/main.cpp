@@ -78,6 +78,7 @@ int main(void) {
 
   // Main loop.
   while(1) {
+    cout << endl;
     // Main menu.
     cout << "Please select one of the following options:" << endl
          << "\t1. Select a flight" << endl
@@ -89,6 +90,7 @@ int main(void) {
          << "\t7. Quit" << endl;
     cout << "Enter your choice (1, 2, 3, 4, 5, 6, or 7): ";
     int choice = get_choice(1, 7);
+    cout << endl;
 
     switch(choice) {
       // Case for selecting a flight.
@@ -98,7 +100,7 @@ int main(void) {
         size_t i;
         for(i = 0; i < west_jet.get_flights()->size(); i++) {
           Flight *flight = &west_jet.get_flights()->at(i);
-          cout << "\t" << i + 1 << ". " << flight->get_id() << setw(8) 
+          cout << "\t" << i + 1 << ". " << flight->get_id() << setw(10) 
                                         << flight->get_route()->get_source() << setw(10) 
                                         << flight->get_route()->get_destination() << setw(10)
                                         << flight->get_number_of_rows() << setw(6)
