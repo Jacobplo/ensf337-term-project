@@ -122,6 +122,35 @@ int main(void) {
 
       // Case for displaying a passenger's information.
       case 3:
+        if(!selected_flight) {
+          cout << "Must select flight first" << endl;
+          break;
+        }
+
+        {
+          Flight *sel_flight = &west_jet.get_flights()->at(selected_flight - 1);
+          cout << "Passenger List(Flight: " << sel_flight->get_id() << " from " 
+                                            << sel_flight->get_route()->get_source() << " to " 
+                                            << sel_flight->get_route()->get_destination() << ")" << endl;
+
+          cout << left << setw(15) << "First Name" << setw(15) << "Last Name" << setw(15) << "Phone" << setw(8) << "Row" << setw(8) << "Seat" << "ID" << endl;
+          cout << string(67, '-') << endl;
+
+          for(size_t i = 0; i < sel_flight->get_passengers()->size() * 2; i++) {
+            const Passenger *passenger = &sel_flight->get_passengers()->at(i / 2);
+            if(i % 2 == 0) {
+              cout << left << setw(15) << passenger->get_first_name() << setw(15) << passenger->get_last_name()
+                           << setw(15) << passenger->get_phone_number() << setw(8) << passenger->get_seat()->get_row_number() 
+                           << setw(8) << passenger->get_seat()->get_seat_character() << passenger->get_id() << endl;
+            }
+            else {
+              cout << string(67, '-') << endl;
+            }
+          }
+        }
+
+        cout << "<<< Press Return to Continue >>>";
+        cin.ignore(256, '\n');
         break;
 
       // Case for adding a new passenger.
