@@ -15,10 +15,10 @@ private:
   vector<Passenger> passengers;
   int number_of_rows;
   int number_of_seats_per_row;
-  Route *route;
+  Route route;
   void populate_seats_vector();
 public:
-  Flight(int id, int num_rows, int num_seats_per_row, Route& route);
+  Flight(int id, int num_rows, int num_seats_per_row, string& source, string& dest);
   void addPassenger(int id, string& fname, string &lname, string& phone, int row_num, char seat_char);
   void removePassenger(int id);
   void print_seat_map();
