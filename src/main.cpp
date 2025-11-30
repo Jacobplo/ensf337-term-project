@@ -162,22 +162,137 @@ int main(void) {
         break;
 
       // Case for adding a new passenger.
+    
       case 4:
+        if(!selected_flight) {
+          cout << "Must select flight first" << endl;
+          break;
+        }
+      
+        {
+          Flight *sel_flight = &west_jet.get_flights()->at(selected_flight - 1);
+      
+          int id, row;
+          char seat_char;
+          string fname, lname, phone;
+      
+          cout << "Please enter the passenger ID: ";
+          cin >> id;
+      
+          cout << "Please enter the passenger first name: ";
+          cin >> fname;
+      
+          cout << "Please enter the passenger last name: ";
+          cin >> lname;
+      
+          cout << "Please enter the passenger phone number: ";
+          cin >> phone;
+      
+          cout << "Enter the passenger’s desired row: ";
+          cin >> row;
+      
+          cout << "Enter the passenger’s desired seat (letter): ";
+          cin >> seat_char;
+      
+          // Add to flight
+          bool ok = sel_flight->addPassenger(id, fname, lname, phone, row, seat_char);
+          if(!ok) {
+            cout << "Error: Seat is already taken or invalid." << endl;
+          }
+          else {
+            cout << "Passenger successfully added." << endl;
+          }
+      
+          cin.ignore(256, '\n');
+          cout << "<<< Press Return to Continue >>>";
+          cin.get();
+        }
         break;
 
       // Case for removing an existing passenger.
+      // Case for removing an existing passenger.
       case 5:
+        if(!selected_flight) {
+          cout << "Must select flight first" << endl;
+          break;
+        }
+      
+        {
+          Flight *sel_flight = &west_jet.get_flights()->at(selected_flight - 1);
+          int id;
+      
+          cout << "Please enter the ID of the passenger to remove: ";
+          cin >> id;
+      
+          bool removed = sel_flight->removePassenger(id);
+      
+          if(removed) {
+            cout << "Passenger with ID " << id << " was successfully removed." << endl;
+          }
+          else {
+            cout << "Error: Passenger not found." << endl;
+          }
+      
+          cin.ignore(256, '\n');
+          cout << "<<< Press Return to Continue >>>";
+          cin.get();
+        }
         break;
+
 
       // Case for saving data to files.
+      // Case for saving data to files.
       case 6:
+        {
+          char save_choice;
+          cout << "Do you want to save the data in \"passengers.txt\"? (Y or N): ";
+          cin >> save_choice;
+          save_choice = toupper(save_choice);
+      
+          if(save_choice == 'Y') {
+            ofstream out("passengers.txt");
+            assert(!out.fail());
+      
+            // Write all passenger data back to file
+            for(size_t f = 0; f < west_jet.get_flights()->size(); f++) {
+              Flight *flight = &west_jet.get_flights()->at(f);
+      
+              for(size_t p = 0; p < flight->get_passengers()->size(); p++) {
+                const Passenger *passenger = &flight->get_passengers()->at(p);
+      
+                out << flight->get_id() << " "
+                    << passenger->get_first_name() << " "
+                    << passenger->get_last_name() << " "
+                    << passenger->get_phone_number() << " "
+                    << passenger->get_seat()->get_row_number()
+                    << passenger->get_seat()->get_seat_character() << " "
+                    << passenger->get_id() << endl;
+              }
+            }
+      
+            cout << "All passenger data has been saved." << endl;
+            out.close();
+          }
+          else {
+            cout << "Save cancelled." << endl;
+          }
+      
+          cin.ignore(256, '\n');
+          cout << "<<< Press Return to Continue >>>";
+          cin.get();
+        }
         break;
 
+// Case for quitting.
+    
       case 7:
-        // Case for quitting.
-        exit(1);
-        break;
-    }
+      {
+          cout << "Program terminated." << endl;
+          exit(0);
+          break;
+      }
+
+      
   }  
   
 
