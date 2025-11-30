@@ -1,6 +1,6 @@
 #include "flight.h"
 
-Flight::Flight(int id, int num_rows, int num_seats_per_row, string& source, string& dest): id(id), number_of_rows(num_rows), number_of_seats_per_row(num_seats_per_row), {
+Flight::Flight(string& id, int num_rows, int num_seats_per_row, string& source, string& dest): id(id), number_of_rows(num_rows), number_of_seats_per_row(num_seats_per_row) {
   route = Route(source, dest);
   populate_seats_vector();
 }
