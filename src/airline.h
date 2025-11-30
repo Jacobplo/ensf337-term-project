@@ -1,3 +1,10 @@
+/*
+ *  File Name: airline.h
+ *  Assignment: Term Project
+ *  Lecture Section: L01
+ *  Completed by: Jacob Plourde
+ *  Development Date: November 29, 2025
+ */
 #ifndef AIRLINE_H
 #define AIRLINE_H
 

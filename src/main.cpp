@@ -13,6 +13,8 @@
 using namespace std;
 
 int get_choice(int min, int max);
+int get_int();
+int get_string();
 int get_num_lines(const string& file);
 
 int main(void) {
@@ -63,6 +65,7 @@ int main(void) {
       seat_char = input.get();
       input >> id;
 
+      // Add passenger to a flight, matching the flight id.
       for(size_t i = 0; i < west_jet.get_flights()->size(); i++) {
         if(west_jet.get_flights()->at(i).get_id() == flight_id) {
           west_jet.get_flights()->at(i).addPassenger(id, fname, lname, phone, row_num, seat_char);
@@ -112,6 +115,7 @@ int main(void) {
      
       // Case for displaying the selecting flight's seat map.
       case 2:
+        // Ensures a flight is selected before the user attempts to list display it's seat map.
         if(!selected_flight) {
           cout << "Must select flight first" << endl;
           break;
@@ -122,6 +126,7 @@ int main(void) {
 
       // Case for displaying a passenger's information.
       case 3:
+        // Ensures a flight is selected before the user attempts to list it's passengers.
         if(!selected_flight) {
           cout << "Must select flight first" << endl;
           break;
@@ -129,13 +134,16 @@ int main(void) {
 
         {
           Flight *sel_flight = &west_jet.get_flights()->at(selected_flight - 1);
+          // Table title.
           cout << "Passenger List(Flight: " << sel_flight->get_id() << " from " 
                                             << sel_flight->get_route()->get_source() << " to " 
                                             << sel_flight->get_route()->get_destination() << ")" << endl;
 
+          // Tabled header.
           cout << left << setw(15) << "First Name" << setw(15) << "Last Name" << setw(15) << "Phone" << setw(8) << "Row" << setw(8) << "Seat" << "ID" << endl;
           cout << string(67, '-') << endl;
 
+          // List passengers, with a separator between rows.
           for(size_t i = 0; i < sel_flight->get_passengers()->size() * 2; i++) {
             const Passenger *passenger = &sel_flight->get_passengers()->at(i / 2);
             if(i % 2 == 0) {

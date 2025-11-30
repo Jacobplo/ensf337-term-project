@@ -1,3 +1,10 @@
+/*
+ *  File Name: flight.cpp
+ *  Assignment: Term Project
+ *  Lecture Section: L01
+ *  Completed by: Jacob Plourde
+ *  Development Date: November 29, 2025
+ */
 #include "flight.h"
 #include <iostream>
 #include <iomanip>
@@ -12,13 +19,14 @@ Flight::Flight(string& id, int num_rows, int num_seats_per_row, string& source, 
 }
 
 void Flight::populate_seats_vector() {
+  // Creates all seat objects in a matrix.
   seats.resize(number_of_rows);
-  for(int i = 0; i < number_of_seats_per_row; i++) {
+  for(int i = 0; i < number_of_rows; i++) {
     seats.at(i).resize(number_of_seats_per_row);
   }
 
+  // Sets all seat row numbers and characters based on their position in the matrix.
   for(int i = 0; i < number_of_rows; i++) {
-    seats.at(i).resize(number_of_seats_per_row);
     for(int j = 0; j < number_of_seats_per_row; j++) {
       seats.at(i).at(j).set_row_number(i);
       seats.at(i).at(j).set_seat_character('A' + j);

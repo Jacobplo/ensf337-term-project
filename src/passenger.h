@@ -1,3 +1,10 @@
+/*
+ *  File Name: passenger.h
+ *  Assignment: Term Project
+ *  Lecture Section: L01
+ *  Completed by: Jacob Plourde
+ *  Development Date: November 27, 2025
+ */
 #ifndef PASSENGER_H
 #define PASSENGER_H
 

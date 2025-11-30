@@ -1,3 +1,10 @@
+/*
+ *  File Name: flight.h
+ *  Assignment: Term Project
+ *  Lecture Section: L01
+ *  Completed by: Jacob Plourde
+ *  Development Date: November 29, 2025
+ */
 #ifndef FLIGHT_H
 #define FLIGHT_H
 
