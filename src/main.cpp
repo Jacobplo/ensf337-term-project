@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <string>
 
@@ -64,6 +65,7 @@ int main(void) {
   input.close();
 
 
+  int selected_flight = 0;
 
   // Main loop.
   while(1) {
@@ -82,6 +84,18 @@ int main(void) {
     switch(choice) {
       // Case for selecting a flight.
       case 1:
+        // List flights.
+        cout << "Here is the list of available flights. Please select one:" << endl;
+        int i;
+        for(i = 0; i < flights.size(); i++) {
+          cout << "\t" << i << ". " << flights.at(i).get_id() << setw(8) 
+                                    << flights.at(i).get_route().get_source() << setw(10) 
+                                    << flights.at(i).get_route().get_destination() << setw(10)
+                                    << flights.at(i).get_number_of_rows() << setw(6)
+                                    << flights.at(i).get_number_of_seats_per_row() << endl;
+        }
+        cout << "Enter your choice: ";
+        selected_flight = get_choice(1, i);
         break;
      
       // Case for displaying the selecting flight's seat map.
