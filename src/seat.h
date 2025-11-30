@@ -9,7 +9,7 @@ private:
   char seat_character;
   bool occupied;
 public:
-  Seat();
+  Seat() {};
   Seat(int row_num, char seat_char);
   int get_row_number() const { return row_number; };
   void set_row_number(int num) { row_number = num; };

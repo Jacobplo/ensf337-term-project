@@ -18,6 +18,7 @@ void Flight::populate_seats_vector() {
   }
 
   for(int i = 0; i < number_of_rows; i++) {
+    seats.at(i).resize(number_of_seats_per_row);
     for(int j = 0; j < number_of_seats_per_row; j++) {
       seats.at(i).at(j).set_row_number(i);
       seats.at(i).at(j).set_seat_character('A' + j);
@@ -31,7 +32,7 @@ void Flight::addPassenger(int id, string& fname, string& lname, string& phone, i
 }
 
 void Flight::removePassenger(int id) {
-  for(int i = 0; i < passengers.size(); i++) {
+  for(size_t i = 0; i < passengers.size(); i++) {
     Passenger *cur = &passengers.at(i);
     if(cur->get_id() == id) {
       cur->get_seat()->set_occupied(false);
@@ -43,17 +44,17 @@ void Flight::print_seat_map() {
   cout << "Aircraft Seat Map for Flight " << id << endl;
   // Seat char row.
   cout << "     ";
-  for(int i = 0; i < seats.at(0).size(); i++) {
+  for(size_t i = 0; i < seats.at(0).size(); i++) {
     cout << i + 'A' << setw(4);
   }
   cout << "\n  +";
-  for(int i = 0; i < seats.at(0).size(); i++) {
+  for(size_t i = 0; i < seats.at(0).size(); i++) {
     cout << "---+";
   }
   cout << endl;
 
   // Fill table.
-  for(int row = 0; row < seats.size() * 2; row++) {
+  for(size_t row = 0; row < seats.size() * 2; row++) {
     if(row % 2 == 0) {
       cout << row / 2 << " |";
     }
@@ -61,7 +62,7 @@ void Flight::print_seat_map() {
       cout << "  +";
     }
 
-    for(int col = 0; col < seats.at(row / 2).size(); col++) {
+    for(size_t col = 0; col < seats.at(row / 2).size(); col++) {
       if(row % 2 == 0) {
         cout << ' ' << (seats.at(row / 2).at(col).get_occupied() ? 'X' : ' ') << " |";  
       }

@@ -8,20 +8,21 @@
 
 #include "airline.h"
 #include "flight.h"
+#include <cassert>
 
 using namespace std;
 
 int get_choice(int min, int max);
+int get_num_lines(const string& file);
 
 int main(void) {
   // Title.
   cout << "FMAS Version: 1.0" << endl
        << "Term Project - Flight Management Application System" << endl
        << "Produced by group#: 12" << endl
-       << "Names: Jacob Plourde, Julio Izuogo, Unas Khalid" << endl << endl
+       << "Names: Jacob Plourde, Julia Izuogo, Unas Khalid" << endl << endl
        << "<<< Press Return to Continue >>>" << endl;
   cin.get();
-
 
   // Load data from files.
   ifstream input;
@@ -29,10 +30,11 @@ int main(void) {
   // Flight data.
   Airline west_jet("WestJet");
   input.open("flights.txt");
+  assert(!input.fail());
   {
     string id, src, dest;
     int num_rows, num_seats_per_row;
-    while(input.peek() != EOF) {
+    for(int line = 0; line < get_num_lines("flights.txt"); line++) {
       input >> id >> src >> dest >> num_rows >> num_seats_per_row;
       west_jet.addFlight(id, num_rows, num_seats_per_row, src, dest);
     }
@@ -41,10 +43,13 @@ int main(void) {
 
   // Passenger data;
   input.open("passengers.txt");
+  assert(!input.fail());
   {
     string flight_id, fname, lname, phone;
-    int row_num = 0, seat_char, id;
-    while(input.peek() != EOF) {
+    int row_num, seat_char, id;
+    for(int line = 0; line < get_num_lines("passengers.txt"); line++) {
+      row_num = 0;
+
       input >> flight_id >> fname >> lname >> phone;
 
       // Get row number without character.
@@ -53,10 +58,11 @@ int main(void) {
         char c = input.get();
         row_num = 10 * row_num + (c - '0');
       } while(input.peek() >= '0' && input.peek() <= '9');
-      
-      input >> seat_char >> id;
+     
+      seat_char = input.get();
+      input >> id;
 
-      for(int i = 0; i < west_jet.get_flights()->size(); i++) {
+      for(size_t i = 0; i < west_jet.get_flights()->size(); i++) {
         if(west_jet.get_flights()->at(i).get_id() == flight_id) {
           west_jet.get_flights()->at(i).addPassenger(id, fname, lname, phone, row_num, seat_char);
         }
@@ -64,6 +70,7 @@ int main(void) {
     }
   }
   input.close();
+
 
 
   int selected_flight = 0;
@@ -87,7 +94,7 @@ int main(void) {
       case 1:
         // List flights.
         cout << "Here is the list of available flights. Please select one:" << endl;
-        int i;
+        size_t i;
         for(i = 0; i < west_jet.get_flights()->size(); i++) {
           Flight *flight = &west_jet.get_flights()->at(i);
           cout << "\t" << i + 1 << ". " << flight->get_id() << setw(8) 
@@ -161,4 +168,16 @@ int get_choice(int min, int max) {
 
     return choice;
   }
+}
+
+int get_num_lines(const string& file) {
+  int count = 0;
+  ifstream input(file);
+  assert(!input.fail());
+  char chr;
+  while((chr = input.get()) != EOF) {
+    if(chr == '\n') count++;
+  }
+
+  return count;
 }

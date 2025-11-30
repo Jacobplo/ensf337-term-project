@@ -10,7 +10,7 @@ private:
   string source;
   string destination;
 public:
-  Route();
+  Route() {};
   Route(string& src, string& dest): source(src), destination(dest) {};
   string get_source()const { return source; };
   string get_destination()const { return destination; };

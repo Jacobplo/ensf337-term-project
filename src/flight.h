@@ -18,6 +18,7 @@ private:
   Route route;
   void populate_seats_vector();
 public:
+  Flight() {};
   Flight(string& id, int num_rows, int num_seats_per_row, string& source, string& dest);
   void addPassenger(int id, string& fname, string &lname, string& phone, int row_num, char seat_char);
   void removePassenger(int id);
