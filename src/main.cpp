@@ -32,6 +32,7 @@ int main(void) {
   input.open("flights.txt");
   assert(!input.fail());
   {
+    // Goes through the file line by line, adding each flight to a vector of flights.
     string id, src, dest;
     int num_rows, num_seats_per_row;
     for(int line = 0; line < get_num_lines("flights.txt"); line++) {
@@ -52,7 +53,7 @@ int main(void) {
 
       input >> flight_id >> fname >> lname >> phone;
 
-      // Get row number without character.
+      // Get row number without character because there is no whitespace between the number and character.
       input.get();
       do {
         char c = input.get();
