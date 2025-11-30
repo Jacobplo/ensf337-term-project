@@ -22,7 +22,7 @@ int main(void) {
        << "Produced by group#: 12" << endl
        << "Names: Jacob Plourde, Julia Izuogo, Unas Khalid" << endl << endl
        << "<<< Press Return to Continue >>>" << endl;
-  cin.get();
+  cin.ignore(256, '\n');
 
   // Load data from files.
   ifstream input;
