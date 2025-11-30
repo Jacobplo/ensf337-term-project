@@ -88,11 +88,11 @@ int main(void) {
         cout << "Here is the list of available flights. Please select one:" << endl;
         int i;
         for(i = 0; i < flights.size(); i++) {
-          cout << "\t" << i << ". " << flights.at(i).get_id() << setw(8) 
-                                    << flights.at(i).get_route().get_source() << setw(10) 
-                                    << flights.at(i).get_route().get_destination() << setw(10)
-                                    << flights.at(i).get_number_of_rows() << setw(6)
-                                    << flights.at(i).get_number_of_seats_per_row() << endl;
+          cout << "\t" << i + 1 << ". " << flights.at(i).get_id() << setw(8) 
+                                        << flights.at(i).get_route().get_source() << setw(10) 
+                                        << flights.at(i).get_route().get_destination() << setw(10)
+                                        << flights.at(i).get_number_of_rows() << setw(6)
+                                        << flights.at(i).get_number_of_seats_per_row() << endl;
         }
         cout << "Enter your choice: ";
         selected_flight = get_choice(1, i);
@@ -100,6 +100,12 @@ int main(void) {
      
       // Case for displaying the selecting flight's seat map.
       case 2:
+        if(!selected_flight) {
+          cout << "Must select flight first" << endl;
+          break;
+        }
+
+        flights.at(selected_flight - 1).print_seat_map();
         break;
 
       // Case for displaying a passenger's information.
