@@ -25,8 +25,8 @@ public:
   int get_number_of_rows()const { return number_of_rows; };
   int get_number_of_seats_per_row()const { return number_of_seats_per_row; };
   string get_id()const { return id; };
-  vector<Passenger> get_passengers()const { return passengers; };
-  Route get_route()const { return route; };
+  const vector<Passenger> *get_passengers()const { return &passengers; };
+  const Route *get_route()const { return &route; };
 };
 
 #endif

@@ -91,8 +91,8 @@ int main(void) {
         for(i = 0; i < west_jet.get_flights()->size(); i++) {
           Flight *flight = &west_jet.get_flights()->at(i);
           cout << "\t" << i + 1 << ". " << flight->get_id() << setw(8) 
-                                        << flight->get_route().get_source() << setw(10) 
-                                        << flight->get_route().get_destination() << setw(10)
+                                        << flight->get_route()->get_source() << setw(10) 
+                                        << flight->get_route()->get_destination() << setw(10)
                                         << flight->get_number_of_rows() << setw(6)
                                         << flight->get_number_of_seats_per_row() << endl;
         }
