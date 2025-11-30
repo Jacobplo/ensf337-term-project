@@ -14,10 +14,15 @@ private:
   string phone_number;
   Seat *seat;
 public:
-  Passenger(string& fname, string& lname, string& phone, Seat *seat);
-  string& get_first_name() const { return first_name; };
-  string& get_last_name() const { return last_name; };
-  string& get_phone_number() const { return phone_number; };
+  Passenger(int id, string& fname, string& lname, string& phone, Seat *seat);
+  int get_id() const { return id; };
+  string get_first_name() const { return first_name; };
+  void set_first_name(string& fname) { first_name = fname; };
+  string get_last_name() const { return last_name; };
+  void set_last_name(string& lname) { last_name = lname; };
+  string get_phone_number() const { return phone_number; };
+  void set_phone_number(string& phone) { phone_number = phone; };
+  Seat *get_seat()const { return seat; };
 };
 
 #endif
