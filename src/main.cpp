@@ -71,12 +71,43 @@ int main(void) {
     cout << "Please select one of the following options:" << endl
          << "\t1. Select a flight" << endl
          << "\t2. Display flight seat map" << endl
-         << "\t3. Display passengers information" << endl
+         << "\t3. Display passenger's information" << endl
          << "\t4. Add a new passenger" << endl
          << "\t5. Remove an existing passenger" << endl
          << "\t6. Save data" << endl
          << "\t7. Quit" << endl;
     int choice = get_choice(1, 7);
+
+    switch(choice) {
+      // Case for selecting a flight.
+      case 1:
+        break;
+     
+      // Case for displaying the selecting flight's seat map.
+      case 2:
+        break;
+
+      // Case for displaying a passenger's information.
+      case 3:
+        break;
+
+      // Case for adding a new passenger.
+      case 4:
+        break;
+
+      // Case for removing an existing passenger.
+      case 5:
+        break;
+
+      // Case for saving data to files.
+      case 6:
+        break;
+
+      case 7:
+        // Case for quitting.
+        exit(1);
+        break;
+    }
   }  
   
 
