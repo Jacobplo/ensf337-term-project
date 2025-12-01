@@ -44,7 +44,10 @@ int main(void) {
   // Flight data.
   Airline west_jet("WestJet");
   input.open("flights.txt");
-  assert(!input.fail());
+  if(input.fail()) {
+    cout << "flights.txt: failed to open file" << endl;
+    exit(1);
+  }
   {
     // Goes through the file line by line, adding each flight to a vector of flights.
     string id, src, dest;
@@ -58,7 +61,10 @@ int main(void) {
 
   // Passenger data;
   input.open("passengers.txt");
-  assert(!input.fail());
+  if(input.fail()) {
+    cout << "passengers.txt: failed to open file" << endl;
+    exit(1);
+  }
   {
     string flight_id, fname, lname, phone;
     int row_num, seat_char, id;
@@ -269,7 +275,10 @@ int main(void) {
         if (save_choice == 'Y') {
 
             ofstream out("passengers.txt");
-            assert(!out.fail());
+            if(out.fail()) {
+              cout << "passengers.txt: failed to open" << endl;
+              exit(1);
+            }
 
             // Loop through flights
             for (size_t f = 0; f < west_jet.get_flights()->size(); f++) {
