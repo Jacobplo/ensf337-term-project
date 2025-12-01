@@ -160,7 +160,7 @@ int main(void) {
             const Passenger *passenger = &sel_flight->get_passengers().at(i / 2);
             if(i % 2 == 0) {
               cout << left << setw(15) << passenger->get_first_name() << setw(15) << passenger->get_last_name()
-                           << setw(15) << passenger->get_phone_number() << setw(8) << passenger->get_seat()->get_row_number()
+                           << setw(15) << passenger->get_phone_number() << setw(8) << passenger->get_seat()->get_row_number() + 1
                            << setw(8) << passenger->get_seat()->get_seat_character() << passenger->get_id() << endl;
             }
             else {
@@ -287,7 +287,7 @@ int main(void) {
                         << passenger.get_first_name() << " "
                         << passenger.get_last_name() << " "
                         << passenger.get_phone_number() << " "
-                        << seat->get_row_number()
+                        << seat->get_row_number() + 1
                         << seat->get_seat_character() << " "
                         << passenger.get_id() << endl;
                 }
