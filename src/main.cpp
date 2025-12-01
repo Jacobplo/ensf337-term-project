@@ -191,9 +191,7 @@ int main(void) {
 
           // ---- Get ID (validated integer) ----
           cout << "Please enter the passenger ID: ";
-          int id = get_choice(0, INT_MAX);
-
-          //cin.ignore(256, '\n'); // clear leftover newline
+          int id = get_choice(1, INT_MAX);
 
           // ---- Get strings (validated non-empty) ----
           string fname = get_nonempty_string("first name");
@@ -238,7 +236,7 @@ int main(void) {
 
                 // ---- Get ID (validated integer) ----
                 cout << "Please enter the ID of the passenger to remove: ";
-                int id = get_choice(0, INT_MAX);
+                int id = get_choice(1, INT_MAX);
 
                 // ---- Remove passenger ----
                 bool removed = false;
