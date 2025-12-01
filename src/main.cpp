@@ -1,24 +1,23 @@
-//
-//  main.cpp
-//  Project 1
-//
-//  Created by Julia Izuogu on 2025-11-30.
-//
-
-// TODO Add headers to all files.
-
+/*
+ *  File Name: flight.h
+ *  Assignment: Term Project
+ *  Lecture Section: L01
+ *  Completed by: Jacob Plourde, Julia Izuogu
+ *  Development Date: November 29, 2025
+ */
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <cassert>
+#include <climits>
 
 #include "airline.h"
 #include "flight.h"
 #include "passenger.h"
 #include "seat.h"
 #include "route.h"
-#include <cassert>
 
 using namespace std;
 
