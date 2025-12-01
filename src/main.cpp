@@ -175,8 +175,7 @@ int main(void) {
           }
         }
 
-        cout << "<<< Press Return to Continue >>>";
-        cin.ignore(256, '\n');
+        
         break;
 
   
@@ -218,8 +217,6 @@ int main(void) {
           sel_flight.addPassenger(id, fname, lname, phone, row, seat_char);
           cout << "Passenger successfully added.\n";
 
-          cout << "<<< Press Return to Continue >>>";
-          cin.ignore(256, '\n');
         }
         break;
 
@@ -256,8 +253,6 @@ int main(void) {
                     cout << "Error: No passenger with that ID was found.\n";
                 }
 
-                cout << "<<< Press Return to Continue >>>";
-                cin.ignore(256, '\n');
             }
             break;
       // Case for saving data to files.
@@ -306,9 +301,6 @@ int main(void) {
             cout << "Save cancelled." << endl;
         }
 
-        cout << "<<< Press Return to Continue >>>";
-        cin.get();
-        cin.ignore(256, '\n');
     }
     break;
 
@@ -321,12 +313,9 @@ int main(void) {
       }
         
     }
+    cout << "<<< Press Return to Continue >>>";
+    cin.ignore(256, '\n');
   }
-  
-
-
-
-
   return 0;
 }
 
