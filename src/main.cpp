@@ -10,7 +10,6 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
-#include <cassert>
 #include <climits>
 
 #include "airline.h"
@@ -345,7 +344,9 @@ int get_choice(int min, int max) {
 int get_num_lines(const string& file) {
   int count = 0;
   ifstream input(file);
-  assert(!input.fail());
+  if(input.fail()) {
+    cout << file << ": failed to open" << endl;
+  }
   char chr;
   while((chr = input.get()) != EOF) {
     if(chr == '\n') count++;
