@@ -5,6 +5,7 @@
  *  Completed by: Jacob Plourde
  *  Development Date: November 29, 2025
  */
+
 #ifndef SEAT_H
 #define SEAT_H
 
@@ -16,7 +17,7 @@ private:
   char seat_character;
   bool occupied;
 public:
-  Seat() {};
+    Seat() : row_number(0), seat_character('A'), occupied(false) {}
   Seat(int row_num, char seat_char);
   int get_row_number() const { return row_number; };
   void set_row_number(int num) { row_number = num; };
@@ -27,3 +28,4 @@ public:
 };
 
 #endif
+
