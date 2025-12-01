@@ -1,28 +1,36 @@
 /*
- *  File Name: airline.h
- *  Assignment: Term Project
- *  Lecture Section: L01
- *  Completed by: Jacob Plourde
- *  Development Date: November 29, 2025
- */
-#ifndef AIRLINE_H
-#define AIRLINE_H
+ *  File Name: airline.h
+ *  Assignment: ENSF 337 Term Project
+ *  Lab and Lecture Section: 1
+ *  Completed by: Unas Khalid
+ *  Development Date: November 28, 2025
+ */
 
+#ifndef HEADER_FOR_AIRLINE
+#define HEADER_FOR_AIRLINE
 #include "flight.h"
-#include <string>
 #include <vector>
+#include <string>
 
-using std::string;
 using std::vector;
+using std::string;
 
 class Airline {
+    
 private:
-  string name;
-  vector<Flight> flights;
+    
+    vector<Flight> flight_list;
+    string airline_name;
+
 public:
-  Airline(const string& name): name(name) { };
-  void addFlight(const string& id, int num_rows, int num_seats_per_row, const string& src, const string& dest);
-  vector<Flight> *get_flights() { return &flights; };
+    
+    Airline(const string &name);
+    
+    void addFlight(const string &flight_id, int rows, int seats_per_row, const string &origin, const string &destination);
+    
+    vector<Flight>* get_flights();
+
+    string get_name() const; 
 };
 
 #endif
