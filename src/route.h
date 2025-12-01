@@ -2,7 +2,7 @@
  *  File Name: route.h
  *  Assignment: ENSF 337 Term Project
  *  Lab and Lecture Section: 1
- *  Completed by: Unas Khalid
+ *  Completed by: Unas Khalid, Jacob Plourde
  *  Development Date: November 28, 2025
  */
 
@@ -16,15 +16,12 @@ class Route {
 
 private:
     
-    string origin;
-    string destination_city;
+    string source;
+    string destination;
     
 public:
 
-    Route() {
-        origin = "";
-        destination_city = "";
-    }
+    Route(): source(""), destination("") {};
 
     Route(const string &from, const string &to);
 

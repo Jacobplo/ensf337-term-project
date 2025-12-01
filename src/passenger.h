@@ -2,21 +2,7 @@
  *  File Name: passenger.h
  *  Assignment: Term Project
  *  Lecture Section: L01
- *  Completed by: Jacob Plourde
- *  Development Date: November 27, 2025
- */
-//
-//  passenger.h
-//  Project 1
-//
-//  Created by Julia Izuogu on 2025-11-30.
-//
-
-/*
- *  File Name: passenger.h
- *  Assignment: Term Project
- *  Lecture Section: L01
- *  Completed by: Jacob Plourde
+ *  Completed by: Jacob Plourde, Julia Izuogu
  *  Development Date: November 27, 2025
  */
 #ifndef PASSENGER_H

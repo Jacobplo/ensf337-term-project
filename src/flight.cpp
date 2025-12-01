@@ -35,8 +35,8 @@ void Flight::populate_seats_vector() {
 }
 
 void Flight::addPassenger(int id, string& fname, string& lname, string& phone, int row_num, char seat_char) {
-  passengers.push_back(Passenger(id, fname, lname, phone, &seats.at(row_num).at(seat_char - 'A')));
-  seats.at(row_num).at(seat_char - 'A').set_occupied(true);
+  passengers.push_back(Passenger(id, fname, lname, phone, &seats.at(row_num - 1).at(seat_char - 'A')));
+  seats.at(row_num - 1).at(seat_char - 'A').set_occupied(true);
 }
 
 void Flight::removePassenger(int id) {

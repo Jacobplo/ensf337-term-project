@@ -2,7 +2,7 @@
  *  File Name: airline.cpp
  *  Assignment: ENSF 337 Term Project
  *  Lab and Lecture Section: 1
- *  Completed by: Unas Khalid
+ *  Completed by: Unas Khalid, Jacob Plourde
  *  Development Date: November 28, 2025
  */
 
