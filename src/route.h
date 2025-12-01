@@ -1,26 +1,37 @@
 /*
- *  File Name: route.h
- *  Assignment: Term Project
- *  Lecture Section: L01
- *  Completed by: Jacob Plourde
- *  Development Date: November 29, 2025
- */
-#ifndef ROUTE_H
-#define ROUTE_H
+ *  File Name: route.h
+ *  Assignment: ENSF 337 Term Project
+ *  Lab and Lecture Section: 1
+ *  Completed by: Unas Khalid
+ *  Development Date: November 28, 2025
+ */
 
+#ifndef HEADER_FOR_ROUTE
+#define HEADER_FOR_ROUTE
 #include <string>
 
 using std::string;
 
 class Route {
+
 private:
-  string source;
-  string destination;
+    
+    string origin;
+    string destination_city;
+    
 public:
-  Route() {};
-  Route(string& src, string& dest);
-  string get_source()const { return source; };
-  string get_destination()const { return destination; };
+
+    Route() {
+        origin = "";
+        destination_city = "";
+    }
+
+    Route(const string &from, const string &to);
+
+    string get_source() const;
+    
+    string get_destination() const;
+
 };
 
 #endif
