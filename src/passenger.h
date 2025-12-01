@@ -5,6 +5,20 @@
  *  Completed by: Jacob Plourde
  *  Development Date: November 27, 2025
  */
+//
+//  passenger.h
+//  Project 1
+//
+//  Created by Julia Izuogu on 2025-11-30.
+//
+
+/*
+ *  File Name: passenger.h
+ *  Assignment: Term Project
+ *  Lecture Section: L01
+ *  Completed by: Jacob Plourde
+ *  Development Date: November 27, 2025
+ */
 #ifndef PASSENGER_H
 #define PASSENGER_H
 
@@ -21,7 +35,7 @@ private:
   string phone_number;
   Seat *seat;
 public:
-  Passenger(int id, string& fname, string& lname, string& phone, Seat *seat);
+  Passenger(int id, const string& fname, const string& lname, const string& phone, Seat *seat);
   int get_id() const { return id; };
   string get_first_name() const { return first_name; };
   void set_first_name(string& fname) { first_name = fname; };
@@ -33,3 +47,4 @@ public:
 };
 
 #endif
+
