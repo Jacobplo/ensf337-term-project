@@ -190,51 +190,48 @@ int main(void) {
   
      case 4:
         if (!selected_flight) {
-                cout << "Must select flight first\n";
-                break;
-            }
+          cout << "Must select flight first\n";
+          break;
+        }
 
-            {
-                Flight &sel_flight = west_jet.get_flights()->at(selected_flight - 1);
+        {
+          Flight &sel_flight = west_jet.get_flights()->at(selected_flight - 1);
 
-                // ---- Get ID (validated integer) ----
-                cout << "Please enter the passenger ID: ";
-                int id = get_choice(0, INT_MAX);
+          // ---- Get ID (validated integer) ----
+          cout << "Please enter the passenger ID: ";
+          int id = get_choice(0, INT_MAX);
 
-                cin.ignore(256, '\n'); // clear leftover newline
+          //cin.ignore(256, '\n'); // clear leftover newline
 
-                // ---- Get strings (validated non-empty) ----
-                string fname = get_nonempty_string("first name");
-                string lname = get_nonempty_string("last name");
-                string phone = get_nonempty_string("phone number");
+          // ---- Get strings (validated non-empty) ----
+          string fname = get_nonempty_string("first name");
+          string lname = get_nonempty_string("last name");
+          string phone = get_nonempty_string("phone number");
 
-                // ---- Get row ----
-                cout << "Enter the passenger's desired row: ";
-                int row = get_valid_row(sel_flight.get_number_of_rows());
+          // ---- Get row ----
+          cout << "Enter the passenger's desired row: ";
+          int row = get_valid_row(sel_flight.get_number_of_rows());
 
-                // ---- Get seat letter ----
-                cout << "Enter the passenger's desired seat letter (A-"
-                     << char('A' + sel_flight.get_number_of_seats_per_row() - 1)
-                     << "): ";
-                char seat_char = get_valid_seat_letter(sel_flight.get_number_of_seats_per_row());
+          // ---- Get seat letter ----
+          cout << "Enter the passenger's desired seat letter (A-"
+               << char('A' + sel_flight.get_number_of_seats_per_row() - 1)
+               << "): ";
+          char seat_char = get_valid_seat_letter(sel_flight.get_number_of_seats_per_row());
 
-                int col = seat_char - 'A';
+          // ---- Check if seat is occupied ----
+          if (sel_flight.get_seats().at(row - 1).at(seat_char - 'A').get_occupied()) {
+              cout << "Error: That seat is already occupied.\n";
+              break;
+          }
 
-                // ---- Check if seat is occupied ----
-                if (sel_flight.get_seats().at(row).at(col).get_occupied()) {
-                    cout << "Error: That seat is already occupied.\n";
-                    break;
-                }
+          // ---- Add passenger ----
+          sel_flight.addPassenger(id, fname, lname, phone, row, seat_char);
+          cout << "Passenger successfully added.\n";
 
-                // ---- Add passenger ----
-                sel_flight.addPassenger(id, fname, lname, phone, row, seat_char);
-                cout << "Passenger successfully added.\n";
-
-                cout << "<<< Press Return to Continue >>>";
-                cin.ignore(256, '\n');
-                cin.get();
-            }
-            break;
+          cout << "<<< Press Return to Continue >>>";
+          cin.ignore(256, '\n');
+        }
+        break;
 
 
       // Case for removing an existing passenger.
@@ -389,9 +386,9 @@ int get_valid_row(int maxRow) {
             continue;
         }
 
-        if (row < 0 || row >= maxRow) {
-            cout << "Invalid row: must be between 0 and "
-                 << maxRow - 1 << ". Try again: ";
+        if (row < 1 || row > maxRow) {
+            cout << "Invalid row: must be between 1 and "
+                 << maxRow << ". Try again: ";
             continue;
         }
 
