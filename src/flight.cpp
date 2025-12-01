@@ -13,7 +13,7 @@ using std::cout;
 using std::endl;
 using std::setw;
 
-Flight::Flight(string& id, int num_rows, int num_seats_per_row, string& source, string& dest): id(id), number_of_rows(num_rows), number_of_seats_per_row(num_seats_per_row) {
+Flight::Flight(const string& id, int num_rows, int num_seats_per_row, const string& source, const string& dest): id(id), number_of_rows(num_rows), number_of_seats_per_row(num_seats_per_row) {
   route = Route(source, dest);
   populate_seats_vector();
 }
@@ -35,7 +35,7 @@ void Flight::populate_seats_vector() {
 }
 
 void Flight::addPassenger(int id, string& fname, string& lname, string& phone, int row_num, char seat_char) {
-  passengers.push_back(Passenger(id, fname, lname, phone, &seats.at(row_num).at(seat_char - 'A'))); 
+  passengers.push_back(Passenger(id, fname, lname, phone, &seats.at(row_num).at(seat_char - 'A')));
   seats.at(row_num).at(seat_char - 'A').set_occupied(true);
 }
 
@@ -74,12 +74,13 @@ void Flight::print_seat_map() {
     for(size_t col = 0; col < seats.at(row / 2).size(); col++) {
       // Each seat in a row, alternating row num and table boundary.
       if(row % 2 == 0) {
-        cout << setw(2) << (seats.at(row / 2).at(col).get_occupied() ? 'X' : ' ') << setw(2) << "|";  
+        cout << setw(2) << (seats.at(row / 2).at(col).get_occupied() ? 'X' : ' ') << setw(2) << "|";
       }
       else {
-        cout << "---+"; 
+        cout << "---+";
       }
     }
     cout << endl;
   }
 }
+
