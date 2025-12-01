@@ -1,12 +1,25 @@
 /*
- *  File Name: airline.cpp
- *  Assignment: Term Project
- *  Lecture Section: L01
- *  Completed by: Jacob Plourde
- *  Development Date: November 29, 2025
- */
+ *  File Name: airline.cpp
+ *  Assignment: ENSF 337 Term Project
+ *  Lab and Lecture Section: 1
+ *  Completed by: Unas Khalid
+ *  Development Date: November 28, 2025
+ */
+
 #include "airline.h"
 
-void Airline::addFlight(string& id, int num_rows, int num_seats_per_row, string& src, string& dest) {
-  flights.push_back(Flight(id, num_rows, num_seats_per_row, src, dest));
+Airline::Airline(const string &name) {
+    airline_name = name;
+}
+
+void Airline::addFlight(const string &flight_id, int rows, int seats_per_row, const string &origin, const string &destination){
+    flight_list.push_back(Flight(flight_id, rows, seats_per_row, origin, destination));
+}
+
+vector<Flight>* Airline::get_flights() {
+    return &flight_list;
+}
+
+string Airline::get_name() const {
+    return airline_name;
 }
