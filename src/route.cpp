@@ -8,15 +8,12 @@
 
 #include "route.h"
 
-Route::Route(const string &from, const string &to) {
-    origin = from;
-    destination_city = to;
-}
+Route::Route(const string &from, const string &to): source(from), destination(to) {}
 
 string Route::get_source() const {
-    return origin;
+    return source;
 }
 
 string Route::get_destination() const {
-    return destination_city;
+    return destination;
 }

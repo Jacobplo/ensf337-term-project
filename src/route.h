@@ -16,15 +16,12 @@ class Route {
 
 private:
     
-    string origin;
-    string destination_city;
+    string source;
+    string destination;
     
 public:
 
-    Route() {
-        origin = "";
-        destination_city = "";
-    }
+    Route(): source(""), destination("") {};
 
     Route(const string &from, const string &to);
 
