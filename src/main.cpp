@@ -260,7 +260,6 @@ int main(void) {
 
                 cout << "<<< Press Return to Continue >>>";
                 cin.ignore(256, '\n');
-                cin.get();
             }
             break;
       // Case for saving data to files.
@@ -309,9 +308,9 @@ int main(void) {
             cout << "Save cancelled." << endl;
         }
 
-        cin.ignore(256, '\n');
         cout << "<<< Press Return to Continue >>>";
         cin.get();
+        cin.ignore(256, '\n');
     }
     break;
 
