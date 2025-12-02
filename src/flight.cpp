@@ -44,6 +44,7 @@ void Flight::removePassenger(int id) {
     Passenger *cur = &passengers.at(i);
     if(cur->get_id() == id) {
       cur->get_seat()->set_occupied(false);
+      passengers.erase(passengers.begin() + i);
     }
   }
 }
