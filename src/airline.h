@@ -27,6 +27,11 @@ public:
     Airline(const string &name);
     
     void addFlight(const string &flight_id, int rows, int seats_per_row, const string &origin, const string &destination);
+    /* REQUIRES: flight_id, origin, and destination to be valid strings.
+     *           rows and seats_per_row being positive integers.
+     * PROMISES: Creates a new Flight object using provided parameters,
+     *           then appends it to the airline's internal flight_list vector.
+     */
     
     vector<Flight>* get_flights();
 

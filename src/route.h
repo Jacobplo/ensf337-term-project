@@ -24,7 +24,12 @@ public:
     Route(): source(""), destination("") {};
 
     Route(const string &from, const string &to);
-
+    /* REQUIRES: from and to being valid, non-empty strings representing
+     *           the starting city and destination city, respectively.
+     * PROMISES: Initializes a Route object with 'source' set to 'from'
+     *           and 'destination' set to 'to'.
+     */
+        
     string get_source() const;
     
     string get_destination() const;
