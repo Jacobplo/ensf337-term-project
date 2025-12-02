@@ -22,6 +22,10 @@ private:
   Seat *seat;
 public:
   Passenger(int id, const string& fname, const string& lname, const string& phone, Seat *seat);
+  /* REQUIRES: id is a valid integer, and fname, lname, phone are valid strings. seat is a pointer to some seat object that exists in the parent flight seats vector.
+   * PROMISES: Creates a passenger object.
+  */
+
   int get_id() const { return id; };
   string get_first_name() const { return first_name; };
   void set_first_name(string& fname) { first_name = fname; };

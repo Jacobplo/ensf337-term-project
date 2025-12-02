@@ -10,7 +10,6 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
-#include <cassert>
 #include <climits>
 
 #include "airline.h"
@@ -25,7 +24,6 @@ int get_choice(int min, int max);
 int get_int();
 int get_string();
 int get_num_lines(const string& file);
-int get_valid_row(int maxRow);
 char get_valid_seat_letter(int maxSeatsPerRow);
 string get_nonempty_string(const string &label);
 
@@ -199,7 +197,7 @@ int main(void) {
 
           // ---- Get row ----
           cout << "Enter the passenger's desired row: ";
-          int row = get_valid_row(sel_flight.get_number_of_rows());
+          int row = get_choice(1, sel_flight.get_number_of_rows());
 
           // ---- Get seat letter ----
           cout << "Enter the passenger's desired seat letter (A-"
@@ -322,6 +320,9 @@ int main(void) {
 
 
 int get_choice(int min, int max) {
+  /* REQUIRES: min and max are valid integers.
+   * PROMISES: Gets user input until the user enters a valid integer within the interval [min, max], and returns this integer.
+  */
   while(1) {
     string input;
     getline(cin, input);
@@ -343,9 +344,14 @@ int get_choice(int min, int max) {
 }
 
 int get_num_lines(const string& file) {
+  /* REQUIRES: file is the name of a file in the directory the program is run in.
+   * PROMISES: returns the line count of the input file.
+  */
   int count = 0;
   ifstream input(file);
-  assert(!input.fail());
+  if(input.fail()) {
+    cout << file << ": failed to open" << endl;
+  }
   char chr;
   while((chr = input.get()) != EOF) {
     if(chr == '\n') count++;
@@ -354,29 +360,10 @@ int get_num_lines(const string& file) {
   return count;
 }
 
-int get_valid_row(int maxRow) {
-    while (true) {
-        string input;
-        getline(cin, input);
-
-        char *endptr;
-        int row = strtol(input.c_str(), &endptr, 10);
-
-        if (*endptr) {
-            cout << "Invalid input: must enter a valid integer. Try again: ";
-            continue;
-        }
-
-        if (row < 1 || row > maxRow) {
-            cout << "Invalid row: must be between 1 and "
-                 << maxRow << ". Try again: ";
-            continue;
-        }
-
-        return row;
-    }
-}
 string get_nonempty_string(const string &label) {
+  /* REQUIRES: label is a valid string.
+   * PROMISES: returns the string that is input by a user, ensuring empty strings are not returned.
+  */
     while (true) {
         cout << "Please enter the passenger " << label << ": ";
         string input;
@@ -391,6 +378,9 @@ string get_nonempty_string(const string &label) {
     }
 }
 char get_valid_seat_letter(int maxSeatsPerRow) {
+  /* REQUIRES: maxSeatsPerRow is a valid positive interger.
+   * PROMISES: returns an alphabetical character equivalent, based on the user input
+  */
     while (true) {
         string input;
         getline(cin, input);
