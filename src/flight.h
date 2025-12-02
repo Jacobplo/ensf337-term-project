@@ -93,10 +93,8 @@ public:
     const Route& get_route() const { return route; }
 
     // Correct accessors for passengers & seats
-    vector<vector<Seat>>& get_seats() { return seats; }
     const vector<vector<Seat>>& get_seats() const { return seats; }
 
-    vector<Passenger>& get_passengers() { return passengers; }
     const vector<Passenger>& get_passengers() const { return passengers; }
 };
 

@@ -239,7 +239,7 @@ int main(void) {
                 for (size_t i = 0; i < passengers.size(); ++i) {
                     if (passengers.at(i).get_id() == id) {
                         passengers.at(i).get_seat()->set_occupied(false); // free the seat
-                        passengers.erase(passengers.begin() + i);        // remove passenger
+                        sel_flight.removePassenger(passengers.at(i).get_id()); // remove the passenger
                         removed = true;
                         break;
                     }
